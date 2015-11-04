@@ -1,6 +1,6 @@
 # ViewportConfig #
 
-ViewportConfig is a simple, easy-to-use JavaScript and TypeScript library for accessing and manipulating HTML [viewport meta tags](http://www.w3schools.com/css/css_rwd_viewport.asp) using JavaScript. The goal is to allow you to read and write these properties on the fly without writing cumbersome logic to find the tag and access it's internals. 
+ViewportConfig is a simple, easy-to-use JavaScript and TypeScript library for accessing and manipulating HTML <a href="http://www.w3schools.com/css/css_rwd_viewport.asp" target="_blank">viewport meta tags</a> using JavaScript. The goal is to allow you to read and write these properties on the fly without writing cumbersome logic to find the tag and access it's internals. 
 
 ## Why access this tag? ##
 For starters, there are a sizeable of people on the internet [looking for javascript functionality surrounding the viewport](https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=get+viewport+scale). There are also instances were you might need to scale elements or assets based on the viewport scale. 
@@ -20,8 +20,6 @@ Don't worry if this is over your head. It is just one use case.
 
 ## Demo ##
 Note that this demo might not have any effect on your desktop browser as viewport tags are only require for devices with pixel ratios other than 1 (most mobile devices). Follow the link below to see the demo.
-
-[ViewportConfig Demo](http://spencer-evans.com/share/github/viewport/)
 
 <a href="http://spencer-evans.com/share/github/viewport/" target="_blank">ViewportConfig Demo</a>
 
