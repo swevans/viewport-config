@@ -66,6 +66,7 @@ var swevans;
      *
      * FUTURE CHANGES:
      *	- It would be nice to support the '@viewport' CSS rules in addition to the meta tag.
+     *	- In an ideal world we could figure out the current viewport scale
      */
     var ViewportConfig = (function () {
         //}
