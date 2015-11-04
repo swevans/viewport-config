@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>ViewportConfig Test</title>
+		
+		<script src="js/swevans/viewport-config-1.0.js"></script>
+		
+		<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=3.0, minimum-scale=0.1" />
+		
+		<style>
+			* {
+				font-family: monospace;
+			}
+		</style>
+		
+	</head>
+	<body>
+		<!-- Helper functions to change viewport properties based on input. -->
+		<script>
+			function changeInitialScale(delta) 
+			{
+				swevans.ViewportConfig.initialScale += delta;
+				document.getElementById("initial-scale").innerHTML = "initial-scale: " + swevans.ViewportConfig.initialScale.toFixed(1); 
+			}
+			
+			function changeMinimumScale(delta) 
+			{
+				swevans.ViewportConfig.minimumScale += delta;
+				document.getElementById("minimum-scale").innerHTML = "minimum-scale: " + swevans.ViewportConfig.minimumScale.toFixed(1); 
+			}
+			
+			function changeMaximumScale(delta) 
+			{
+				swevans.ViewportConfig.maximumScale += delta;
+				document.getElementById("maximum-scale").innerHTML = "maximum-scale: " + swevans.ViewportConfig.maximumScale.toFixed(1); 
+			}
+			
+			function changeScalable(scalable) 
+			{
+				swevans.ViewportConfig.userScalable = scalable;
+			}
+			
+			function matchDevice() 
+			{
+				swevans.ViewportConfig.matchDevice();
+				document.getElementById("initial-scale").innerHTML = "initial-scale: " + swevans.ViewportConfig.initialScale.toFixed(1); 
+			}
+		</script>
+		
+		<!-- A warning message to show if viewport properties do not appear to be required or supported. -->
+		<div id="mobileOnlyWarning" style="display: block; background-color: #FFD5D3; font-size: 20px; font-weight: bolder; padding: 20px; margin-bottom: 20px; text-align: center;">
+			This demo is intended for browsers which support the viewport tag and have a pixel ratio not equal to 1.<br/><br/>
+			To date, only mobile browsers support this tag. This demo may not work or may have no effect on your browser.
+		</div>
+		
+		<!-- Hide the warning message if the viewport appears to be supported -->
+		<script>
+			if (swevans.ViewportConfig.isSupported)
+			{
+				var warning = document.getElementById("mobileOnlyWarning");
+				warning.style.display = "none";
+			}
+		</script>
+		
+		
+		<!-- Input controls for changing viewport configuration -->
+		<button type="button" onclick="changeInitialScale(-0.1);">-</button>
+		<span id="initial-scale">initial-scale: ?</span>
+		<button type="button" onclick="changeInitialScale(0.1);">+</button>
+		<br/>
+		<br/>
+		
+		<button type="button" onclick="changeMinimumScale(-0.1);">-</button>
+		<span id="minimum-scale">minimum-scale: ?</span>
+		<button type="button" onclick="changeMinimumScale(0.1);">+</button>
+		<br/>
+		<br/>
+		
+		<button type="button" onclick="changeMaximumScale(-0.1);">-</button>
+		<span id="maximum-scale">maximum-scale: ?</span>
+		<button type="button" onclick="changeMaximumScale(0.1);">+</button>
+		<br/>
+		<br/>
+		
+		
+		<label><input id="user-scalable" type='checkbox' onclick='changeScalable(this.checked);'>User Scalable</label>
+		<br/>
+		<br/>
+		
+		<button type="button" onclick="matchDevice();">Match Device</button>
+		
+		<!-- Read and output the initial viewport values -->
+		<script>
+			document.getElementById("initial-scale").innerHTML = "initial-scale: " + swevans.ViewportConfig.initialScale.toFixed(1);
+			document.getElementById("minimum-scale").innerHTML = "minimum-scale: " + swevans.ViewportConfig.minimumScale.toFixed(1); 
+			document.getElementById("maximum-scale").innerHTML = "maximum-scale: " + swevans.ViewportConfig.maximumScale.toFixed(1);
+			
+			if (swevans.ViewportConfig.userScalable) document.getElementById("user-scalable").checked = true;
+			else document.getElementById("user-scalable").checked = false;
+		</script>
+		
+	</body>
+</html>
