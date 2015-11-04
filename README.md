@@ -1,9 +1,9 @@
 # ViewportConfig #
 
-ViewportConfig is a simple, easy-to-use library for accessing and manipulating HTML [viewport meta tags](http://www.w3schools.com/css/css_rwd_viewport.asp) using JavaScript. The goal is to allow you to read and write these properties on the fly without writing cumbersome logic to find the tag and access it's internals. 
+ViewportConfig is a simple, easy-to-use JavaScript and TypeScript library for accessing and manipulating HTML [viewport meta tags](http://www.w3schools.com/css/css_rwd_viewport.asp) using JavaScript. The goal is to allow you to read and write these properties on the fly without writing cumbersome logic to find the tag and access it's internals. 
 
 ## Why access this tag? ##
-For starters, there are a sizeable of people on the internet [looking for javascript functionality surrounding the viewport](https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=get+viewport+scale). There are also instances were you might need to scale elements or assets based on the current viewport scale. 
+For starters, there are a sizeable of people on the internet [looking for javascript functionality surrounding the viewport](https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=get+viewport+scale). There are also instances were you might need to scale elements or assets based on the viewport scale. 
 
 This project was prompted by the need for [high definition canvas rendering](http://www.html5rocks.com/en/tutorials/canvas/hidpi/) when css pixels do not match device pixels. To achieve HD rendering when the html is scaled up, the canvas element must rendered in at a larger size relative to the html scale factor. If HTML is scaled up by 2, the canvas should render contents at twice the size to prevent blurring when the browser presents the scaled canvas raster.
 
@@ -14,11 +14,71 @@ An example:
 - Pixel Ratio: 2
 - Logical Resolution: 1024x768
 
-In this instance, the device resolution is much higher than the logical resolution that the webpage is being rendered with. The webpage will effectively be rendered at half resolution and the scaled up to fit the full screen. Any canvas element within the page will be scaled up post render, which causes normally sharp graphics to blur. To compensate, we should create the canvas at twice the size and then scale it down to fit within smaller page. If the viewport was 0.5 instead of 1, the effective page resolution would be 2048x1536 (matching the device). In this case, we do not want to create an oversized canvas and thus need to know what the current viewport scale is.
+In this instance, the device resolution is much higher than the logical resolution that the webpage is being rendered with. The webpage will effectively be rendered at half resolution and the scaled up to fit the full screen. Any canvas element within the page will be scaled up post render, which causes normally sharp graphics to blur. To compensate, we should create the canvas at twice the size and then scale it down to fit within smaller page. If the viewport was 0.5 instead of 1, the effective page resolution would be 2048x1536 (matching the device). In this case, we do not want to create an oversized canvas and thus need to know what the viewport scale is.
 
 Don't worry if this is over your head. It is just one use case.
 
+## Usage ##
+Include viewport-config-vX.X.js in your JavaScript bundle or add it to your HTML page like this.
 
+```html
+<script type='application/javascript' src='/path/to/viewport-config-1.0.js'></script>
+```
+The script must be loaded prior to using it within your code. ViewportConfig follows a static interface and exists in a the "swevans" namespace, and thus does not need to be instantiated. Use the class directly to get / set viewport tag content properties:
+
+```js
+// Getting the initial-scale value
+var theInitialViewportScale = swevans.ViewportConfig.initialScale;
+
+// Setting the initial-scale value to some value
+// note this will change the scale on all supporting browsers
+swevans.ViewportConfig.initialScale = 5.1;
+
+// Clearing a property by setting to null
+swevans.ViewportConfig.initialScale = null;
+```
+
+Note that if no viewport tag is included in the page, one will be created when a property is set via ViewportConfig. If multiple viewport meta tags exist, the one appearing last in the document will be used by ViewportConfig.
+
+### The API ###
+ViewportConfig provides getters and setters for the following viewport tag content properties:
+```js
+// NOTE: all numerical values are rounded to 4 decimal places
+// NOTE: setting any property to null will remove it from the tag
+
+// gets and sets the initial-scale property as a number
+swevans.ViewportConfig.initialScale;
+
+// gets and sets the minimum-scale property as a number
+swevans.ViewportConfig.minimumScale;
+
+// gets and sets the maximum-scale property as a number
+swevans.ViewportConfig.maximumScale;
+
+// gets and sets the user-scalable property as a boolean
+// false=no, true=yes
+swevans.ViewportConfig.userScalable;
+
+// gets and sets the width property as a string
+swevans.ViewportConfig.width;
+
+// gets and sets the height property as a string
+swevans.ViewportConfig.height;
+
+// gets and sets the target-densitydpi property as a string
+swevans.ViewportConfig.targetDensityDPI;
+
+// gets the current device pixel ratio, 1 if undefined
+swevans.ViewportConfig.pixelRatioScale;
+
+// a bool indicating if the ViewportConfig tag is supported
+// false means that the tag is ignored or not required
+swevans.ViewportConfig.isSupported;
+
+// A helper function to update the viewport initial scale such 
+// that css pixels will match hardward pixels in 1:1 ratio.
+swevans.ViewportConfig.matchDevice();
+```
 
 
 
