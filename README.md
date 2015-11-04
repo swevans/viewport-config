@@ -41,7 +41,7 @@ swevans.ViewportConfig.initialScale = null;
 Note that if no viewport tag is included in the page, one will be created when a property is set via ViewportConfig. If multiple viewport meta tags exist, the one appearing last in the document will be used by ViewportConfig.
 
 ### The API ###
-ViewportConfig provides getters and setters for the following viewport tag content properties:
+ViewportConfig provides the following public interface:
 ```js
 // NOTE: all numerical values are rounded to 4 decimal places
 // NOTE: setting any property to null will remove it from the tag
@@ -80,56 +80,29 @@ swevans.ViewportConfig.isSupported;
 swevans.ViewportConfig.matchDevice();
 ```
 
+## Compatibility ##
+- The ViewportConfig class should work in all modern browsers (IE9+). IE10+ does not support the viewport tag, but also isn't relevant / needed on desktop (where most of IE is used?), so lack of support is moot.
+- The viewport tag itself may not be as widely supported, and thus ViewportConfig changes would have no effect.
+- Widespread browser testing hasn't been done yet, but the simple code should run on just about anything.
 
+## Additional Notes ##
+- Note that if more than one viewport meta tag is included in the html file, the tag appearing last (closer to the end of the document) will be accessed / manipulated.
+- If no viewport tag is present in the dom, one will be added when a property is set via ViewportConfig.
+- ViewportConfig does not attempt to read the 'current' viewport scale. We cannot reliably do so because the user scalable, zoom properties, or scrollbar measuring method of the users web view could throw off the reading.
+- Note that the viewport meta tag is not W3C standard. The future of viewport support is leaning in the direction of using '@viewport' css rules to control the viewport configuration. This CSS rule is still not widely supported. The only known implementation is in IE10.
 
+## Recommendations ##
+- Specify a single viewport meta tag at the top of your html files
+- It is usually best to omit width, height, and target-densitydpi properties. 
+- The Accessibility Project recommends allowing user-scalable, be sure to manage your max and min scale appropriately.
+- An example ideal viewport meta tag is: <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=3.0, minimum-scale=0.1" />
+- If you MUST know the current viewport scale, it is best to disallow user scaling and read the initial scale property
 
+## Known Issues & Considerations ## 
+- There is a known limitation that the viewport class rounds all numerical values to four decimal places, this is to avoid issues when converting numbers to and from strings.
+- The userScalable property may not behave exactly as expected. On some devices pages won't actually become scalable until they are too large to fit on the users screen, no matter what the userScalable setting is set to. They may also become scalable regardless of the userScalable setting on  some pages. These issues are mostly linked to android devices. This issue is systemic beyond this library.
+- Viewport configuration might not even apply in some browsers (mostly desktop and IE10+).
 
-NAUT Games - Demos
-=====
-
-This repository contains source files for technical demonstrations published by NAUT games. 
-
-##About the Demos
-You can find information about the demos detailed in the github project wiki @ https://github.com/naut-games/demos/wiki. A brief overview of the demos is listed below.
-
-### Camera for 2D Scenes with Parallax
-_Location: Demos/Camera2D_<br/>
-_Language: AS3_<br/>
-_Project Types: FlashDevelop, Flash IDE_<br/>
-_Live Demo: [Camera2D Demo](http://tech.nautgames.com/demos/camera2d/)_<br/>
-This demonstration shows off a simple camera class for easily transforming 2 dimensional scenes. The camera class features position, rotation, zoom, and parallax capabilities. The class is relatively efficient and suitable for real time games. We've used it in side on and top down scrolling games.
-
-### Weak Referencing Objects
-_Location: Demos/WeakReference_<br/>
-_Language: AS3_<br/>
-_Project Types: FlashDevelop, Flash IDE_<br/>
-This demonstration contains a utility class for creating weak references to objects. The weak reference instance itself is a lightweight wrapper for the built in Dictionary class. When the flash player mark and sweep garbage collector runs, the object being weakly referenced will be marked and collected if only weak references are pointing to it. WeakReferences should be used sparingly. We've effectively used them in caching and object pooling.
-
-### Random Number Generator
-_Location: Demos/Random_<br/>
-_Language: AS3_<br/>
-_Project Types: FlashDevelop, Flash IDE_<br/>
-This demonstration contains a seedable psuedo Random Number Generator (RNG) implemented using a Linear Congruential Generator (LCG) algorithm. This RNG is not suitable for encryption / security or generating large volumes of noise in real time. This generator does have many practical applications listed in the Random.as class header.
-
-### Neural Network
-_Location: Demos/NeuralNet_<br/>
-_Language: AS3_<br/>
-_Project Types: FlashDevelop, Flash IDE_<br/>
-This demonstration contains a basic 3 layer feed-forward neural network that is trained via sigmoid function based back-propagation. A neural network of this type is suitable for most simple applications and specifically for games.
-
-## Questions, Comments, Feature Requests...
-Please email spencer@nautgames.com!
-
-## Changelog
-#### Updated: 2014-12-22
- * Added parallax capabilities to the Camera2D demo
- * Added the Camera2D tech demo
-
-#### Updated: 2014-12-18
- * Added the WeakReference tech demo
-
-#### Updated: 2014-08-09
- * Added the Random tech demo
-
-#### Updated: 2014-08-08
- * Added the NeuralNet tech demo
+## Future Changes ##
+- It would be nice to support the '@viewport' CSS rules in addition to the meta tag.
+- In an ideal world we could figure out the current viewport scale
