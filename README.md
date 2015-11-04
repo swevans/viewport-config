@@ -3,9 +3,9 @@
 ViewportConfig is a simple, easy-to-use JavaScript and TypeScript library for accessing and manipulating HTML <a href="http://www.w3schools.com/css/css_rwd_viewport.asp" target="_blank">viewport meta tags</a> using JavaScript. The goal is to allow you to read and write these properties on the fly without writing cumbersome logic to find the tag and access it's internals. 
 
 ## Why access this tag? ##
-For starters, there are a sizeable of people on the internet [looking for javascript functionality surrounding the viewport](https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=get+viewport+scale). There are also instances were you might need to scale elements or assets based on the viewport scale. 
+For starters, there are a sizeable of people on the internet <a href="https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=get+viewport+scale" target="_blank">looking for javascript functionality surrounding the viewport</a>. There are also instances were you might need to scale elements or assets based on the viewport scale. 
 
-This project was prompted by the need for [high definition canvas rendering](http://www.html5rocks.com/en/tutorials/canvas/hidpi/) when css pixels do not match device pixels. To achieve HD rendering when the html is scaled up, the canvas element must rendered in at a larger size relative to the html scale factor. If HTML is scaled up by 2, the canvas should render contents at twice the size to prevent blurring when the browser presents the scaled canvas raster.
+This project was prompted by the need for <a href="http://www.html5rocks.com/en/tutorials/canvas/hidpi/" target="_blank">high definition canvas rendering</a> when css pixels do not match device pixels. To achieve HD rendering when the html is scaled up, the canvas element must rendered in at a larger size relative to the html scale factor. If HTML is scaled up by 2, the canvas should render contents at twice the size to prevent blurring when the browser presents the scaled canvas raster.
 
 An example:
 - Device: iPad3
