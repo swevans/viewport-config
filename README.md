@@ -18,8 +18,15 @@ In this instance, the device resolution is much higher than the logical resoluti
 
 Don't worry if this is over your head. It is just one use case.
 
+## Demo ##
+Note that this demo might not have any effect on your desktop browser as viewport tags are only require for devices with pixel ratios other than 1 (most mobile devices). Follow the link below to see the demo.
+
+[ViewportConfig Demo](http://spencer-evans.com/share/github/viewport/)
+
 ## Usage ##
-Include viewport-config-vX.X.js in your JavaScript bundle or add it to your HTML page like this.
+Download the repo and copy the www/js/swevans/viewport-config-X.X.js file into your project.
+
+Include viewport-config-X.X.js in your JavaScript bundle or add it to your HTML page like this.
 
 ```html
 <script type='application/javascript' src='/path/to/viewport-config-1.0.js'></script>
@@ -106,3 +113,6 @@ swevans.ViewportConfig.matchDevice();
 ## Future Changes ##
 - It would be nice to support the '@viewport' CSS rules in addition to the meta tag.
 - In an ideal world we could figure out the current viewport scale
+
+## Compiling TypeScript ##
+Compiling the typescript is not required to use the library. Should you decide to do so, run the compiler within the src directory. It should pickup the tsconfig.json configuration file and output to www/js/swevans/viewport-config-X.X.js.
