@@ -23,6 +23,8 @@ Note that this demo might not have any effect on your desktop browser as viewpor
 
 [ViewportConfig Demo](http://spencer-evans.com/share/github/viewport/)
 
+<a href="http://spencer-evans.com/share/github/viewport/" target="_blank">ViewportConfig Demo</a>
+
 ## Usage ##
 Download the repo and copy the www/js/swevans/viewport-config-X.X.js file into your project.
 
