@@ -5,7 +5,7 @@ ViewportConfig is a simple, easy-to-use library for accessing and manipulating H
 ## Why access this tag? ##
 For starters, there are a sizeable of people on the internet [looking for javascript functionality surrounding the viewport](https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=get+viewport+scale). There are also instances were you might need to scale elements or assets based on the current viewport scale. 
 
-This project was prompted by the need for [high definition canvas rendering](http://www.html5rocks.com/en/tutorials/canvas/hidpi/) when css pixels do not match device pixels. To achieve HD rendering when the html is scaled down, the canvas element itself must be scaled up.
+This project was prompted by the need for [high definition canvas rendering](http://www.html5rocks.com/en/tutorials/canvas/hidpi/) when css pixels do not match device pixels. To achieve HD rendering when the html is scaled up, the canvas element must rendered in at a larger size relative to the html scale factor. If HTML is scaled up by 2, the canvas should render contents at twice the size to prevent blurring when the browser presents the scaled canvas raster.
 
 An example:
 - Device: iPad3
