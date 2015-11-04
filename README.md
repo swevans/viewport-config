@@ -98,7 +98,7 @@ swevans.ViewportConfig.matchDevice();
 - An example ideal viewport meta tag is: <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=3.0, minimum-scale=0.1" />
 - If you MUST know the current viewport scale, it is best to disallow user scaling and read the initial scale property
 
-## Known Issues & Considerations ## 
+## Known Issues and Considerations ##
 - There is a known limitation that the viewport class rounds all numerical values to four decimal places, this is to avoid issues when converting numbers to and from strings.
 - The userScalable property may not behave exactly as expected. On some devices pages won't actually become scalable until they are too large to fit on the users screen, no matter what the userScalable setting is set to. They may also become scalable regardless of the userScalable setting on  some pages. These issues are mostly linked to android devices. This issue is systemic beyond this library.
 - Viewport configuration might not even apply in some browsers (mostly desktop and IE10+).
